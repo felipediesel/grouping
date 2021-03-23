@@ -2,6 +2,8 @@
 # frozen_string_literal: true
 
 require "bundler/setup"
-require_relative "../lib/grouping"
+
+# Require all files on /lib
+Dir[File.join(__dir__, '..', 'lib', '**', '*.rb')].each { |file| require file }
 
 Grouping.start

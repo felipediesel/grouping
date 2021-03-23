@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-require "grouping"
+# Require all files on /lib
+Dir[File.join(__dir__, '..', 'lib', '**', '*.rb')].each { |file| require file }
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
