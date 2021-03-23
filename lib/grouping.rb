@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Grouping
-  MATCHING_TYPES = %i(email phone both)
+  MATCHING_TYPES = %i[email phone both].freeze
 
   attr_reader :argv
 

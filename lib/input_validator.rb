@@ -15,17 +15,15 @@ class InputValidator
   private_class_method :new
 
   def call!
-    if !filename && !matching_type
-      exit_with_help
-    end
+    exit_with_help if !filename && !matching_type
 
     errors = []
     errors << "\"#{filename}\" is not a valid file" unless File.file?(filename)
-    errors <<  "\"#{matching_type}\" is not a valid matching type" unless Grouping::MATCHING_TYPES.include?(matching_type.to_sym)
-
-    if errors.any?
-      exit_with_help(errors)
+    unless Grouping::MATCHING_TYPES.include?(matching_type.to_sym)
+      errors << "\"#{matching_type}\" is not a valid matching type"
     end
+
+    exit_with_help(errors) if errors.any?
   end
 
   def exit_with_help(errors = [])
@@ -53,7 +51,7 @@ class InputValidator
       grouping identifies rows in a CSV file that may represent the same person based on a provided Matching Type.
 
       input_file:       must be a valid CSV file
-      matching_type:    #{Grouping::MATCHING_TYPES.join('|')}
+      matching_type:    #{Grouping::MATCHING_TYPES.join("|")}
     HELP
   end
 end

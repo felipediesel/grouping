@@ -32,10 +32,12 @@ RSpec.describe InputValidator do
     end
 
     describe "when an invalid match type is provided" do
-      let(:matching_type) { 'test' }
+      let(:matching_type) { "test" }
 
       it "prints error and help text" do
-        expect { subject }.to raise_error(SystemExit).and output(/is not a valid matching type(.*)usage: grouping/m).to_stdout
+        expect do
+          subject
+        end.to raise_error(SystemExit).and output(/is not a valid matching type(.*)usage: grouping/m).to_stdout
       end
     end
   end
