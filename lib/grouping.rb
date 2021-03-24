@@ -18,8 +18,7 @@ class Grouping
   def start
     InputValidator.call!(filename, matching_type)
 
-    puts filename
-    puts matching_type
+    ContactParser.new(filename).data
   end
 
   def filename
