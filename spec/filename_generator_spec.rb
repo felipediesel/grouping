@@ -12,6 +12,14 @@ RSpec.describe FilenameGenerator do
       it { is_expected.to eq("input.grouped.csv") }
     end
 
+    context "when file does not have an extenstion" do
+      let(:original_filename) { "input" }
+
+      before { allow(File).to receive(:exist?).and_return(false) }
+
+      it { is_expected.to eq("input.grouped.csv") }
+    end
+
     context "when one file exists" do
       before { allow(File).to receive(:exist?).and_return(true, false) }
 

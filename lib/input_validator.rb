@@ -46,7 +46,7 @@ class InputValidator
 
   def help
     <<~HELP
-      usage: grouping <input_file> <matching_type>
+      usage: grouping <input_file.csv> <matching_type>
 
       grouping identifies rows in a CSV file that may represent the same person based on a provided Matching Type.
 

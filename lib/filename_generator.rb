@@ -9,6 +9,7 @@ class FilenameGenerator
 
   def initialize(original_filename)
     arr = original_filename.split(".")
+    arr << "csv" if arr.length == 1
 
     @grouped_filename = [arr[0..-2], "grouped", arr[-1]].join(".")
     @counter = 0
