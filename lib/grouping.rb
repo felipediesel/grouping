@@ -20,12 +20,18 @@ class Grouping
 
     contacts = ContactParser.new(filename)
     result = Matcher.call(contacts.data, matching_type)
-    puts result
-    result
+    grouped_header = ["UUID", *contacts.header]
+    CsvGenerator.call(result, grouped_header, grouped_filename)
+
+    puts "#{grouped_filename} created"
   end
 
   def filename
     argv[0]
+  end
+
+  def grouped_filename
+    @grouped_filename ||= FilenameGenerator.call(filename)
   end
 
   def matching_type

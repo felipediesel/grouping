@@ -5,12 +5,15 @@ RSpec.describe Grouping do
     let(:filename) { File.join(__dir__, "../spec/fixtures/input1.csv") }
     let(:argv) { [filename, "email"] }
 
-    before { allow(File).to receive(:file?).and_return(true) }
+    before do
+      allow(File).to receive(:file?).and_return(true)
+      allow(File).to receive(:write)
+    end
 
     subject { described_class.start(argv) }
 
     it "executes the program" do
-      expect(subject.length).to eq(8)
+      expect { subject }.to output(%r{spec/fixtures/input1.grouped.csv}).to_stdout
     end
 
     describe "when arguments are not valid" do
